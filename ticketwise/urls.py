@@ -18,11 +18,11 @@ from django.contrib import admin
 from django.urls import path
 
 
-from api.views import AdminCreateView
+from api.views import AdminCreateView,StaffCreateView,TicketCommentView
 from rest_framework.authtoken.views import ObtainAuthToken
 
 
-from api.views import TicketListCreateView
+from api.views import TicketListCreateView,TicketUpdateDeleteView,TicketRetrieveView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,4 +32,16 @@ urlpatterns = [
     path("api/token/",ObtainAuthToken.as_view()),
 
     path("api/ticket/",TicketListCreateView.as_view()),
+
+    path("api/ticket/<int:pk>/",TicketUpdateDeleteView.as_view()),
+
+    path("api/ticket/<int:pk>/detail/",TicketRetrieveView.as_view()),
+
+    path("api/register/",StaffCreateView.as_view()),
+
+    path("api/ticket/<int:pk>/comment/",TicketCommentView.as_view()),
+
+    
+
+
 ]

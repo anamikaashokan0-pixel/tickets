@@ -38,3 +38,55 @@ Authorization: Token 5cdb0e394ada7ea8008f35a806c08bfc4bdc887b
     "status":"IN_PROGRESS"
 
 }
+#update ticket
+###
+PUT http://127.0.0.1:8000/api/ticket/1/
+Content-Type: application/json
+Authorization: Token 5cdb0e394ada7ea8008f35a806c08bfc4bdc887b
+
+{
+    "title":"payment deducted but order not confirmed",
+    "description":"Money was deducted from my account but my order is still showing as pending",
+    "category":"PAYMENT",
+    "priority":"LOW",
+    "status":"IN_PROGRESS"
+}
+
+#fetch ticket
+###
+GET http://127.0.0.1:8000/api/ticket/1/detail/
+Accept: application/json
+Authorization: Token 5cdb0e394ada7ea8008f35a806c08bfc4bdc887b
+
+
+#staff register
+###
+POST http://127.0.0.1:8000/api/register/
+Content-Type: application/json
+
+{
+    "username":"rishi",
+    "password":"Password@123",
+    "email":"rishi@gamil.com",
+    "phone":"7034763993"
+}
+
+
+
+
+# fetch comments
+
+###
+GET  http://127.0.0.1:8000/api/ticket/1/comment/
+Accept: application/json
+Authorization: Token 5cdb0e394ada7ea8008f35a806c08bfc4bdc887b
+
+# add comment
+###
+POST  http://127.0.0.1:8000/api/ticket/1/comment/
+Content-Type: application/json
+Authorization: Token 5cdb0e394ada7ea8008f35a806c08bfc4bdc887b
+
+{
+    "message":"We have identified the issue and are working on a solution."
+}

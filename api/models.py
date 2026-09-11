@@ -44,3 +44,11 @@ class Ticket(models.Model):
 
     def __str__(self):
         return self.title
+
+class TicketComment(models.Model):
+    ticket=models.ForeignKey(Ticket,on_delete=models.CASCADE,related_name="ticket_comment")
+    user=models.ForeignKey(User,on_delete=models.CASCADE,related_name="user")
+    message=models.TextField()
+    created_at=models.DateTimeField(auto_now_add=True)
+
+
