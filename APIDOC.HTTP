@@ -1,0 +1,40 @@
+
+# user register
+###
+POST http://127.0.0.1:8000/api/admin/register/
+Content-Type: application/json
+
+{
+    "username":"ajin",
+    "password":"password@123",
+    "phone":"0986765091",
+    "email":"ajin@gmail.com"
+}
+
+# token
+###
+POST http://127.0.0.1:8000/api/token/
+Content-Type: application/json
+
+{
+    "username":"ajin",
+    "password":"password@123"
+    
+}
+
+"token": "5cdb0e394ada7ea8008f35a806c08bfc4bdc887b"
+
+# add ticket
+###
+POST http://127.0.0.1:8000/api/ticket/
+Content-Type: application/json
+Authorization: Token 5cdb0e394ada7ea8008f35a806c08bfc4bdc887b
+
+{
+    "title":"payment deducted but order not confirmed",
+    "description":"money was deducted from my account but my order is still showing as pending",
+    "category":"PAYMENT",
+    "priority":"LOW",
+    "status":"IN_PROGRESS"
+
+}
