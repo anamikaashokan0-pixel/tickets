@@ -14,6 +14,10 @@ from api.models import Ticket,TicketComment
 from api.permissions import Userownly
 
 from api.serializers import AdminSerializer
+
+
+from api.agent import evaluate_response
+
 class AdminCreateView(CreateAPIView):
     serializer_class=AdminSerializer
 
@@ -64,7 +68,17 @@ class TicketCommentView(APIView):
     def post(self,request,pk):
     
         ticket=Ticket.objects.get(id=pk)
-        ticketcomment=request.data.get("message")
+        message=request.data.get("message")
+
+        result=evaluate_response(ticket)
+
+        print(result)
+        TicketComment.objects.create(
+            ticket=ticket,
+            user=request.user,
+            message=message
+        )
+
     
         return Response({"message":"commented...."})
     

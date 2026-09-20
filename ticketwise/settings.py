@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/6.1/ref/settings/
 """
 
 from pathlib import Path
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-tjctz$u=1a$6-_r3o!dc7k3v6-_yvbjcqhuu_(4dlwo_cpt&a8'
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -79,11 +82,11 @@ WSGI_APPLICATION = 'ticketwise.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': "issues_db",
-        "USER":"root",
-        "PASSWORD":"Password@123",
-        "HOST":"localhost",
-        "PORT":"3306"
+        'NAME': os.getenv("NAME"),
+        "USER":os.getenv("USER"),
+        "PASSWORD":os.getenv("PASSWORD"),
+        "HOST":os.getenv("HOST"),
+        "PORT":os.getenv("PORT"),
     }
 }
 
@@ -135,3 +138,9 @@ MAILERS = {
 }
 
 AUTH_USER_MODEL = "api.User"
+
+AUTHENTICATION_BACKENDS= [
+    'django.contrib.auth.backends.ModelBackend',
+    'api.backends.PhoneBackend'
+]
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
